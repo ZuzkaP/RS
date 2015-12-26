@@ -1,0 +1,109 @@
+﻿@model RS.Models.Users
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="~/Scripts/materialize.min.css" media="screen,projection" />
+    @{
+        ViewBag.Title = "Registrácia";
+    }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/materialize.min.js"></script>
+   
+    <h4>Registrácia</h4>
+
+            @using (Html.BeginForm())
+            {
+
+                @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken()
+
+
+                      if (ViewBag.Message != null)
+                    {
+                             <div style="border-color: red">
+                         
+                        <p style="color: red;">@ViewBag.Message</p>
+                      </div>
+        }
+
+            <form class="col s12">
+                @*////////////////////////////////////////////////////////////////*@
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>                          
+                                @Html.LabelFor(model => model.first_name)
+                                @Html.EditorFor(model => model.first_name)
+                                @Html.ValidationMessageFor(model => model.first_name)
+                            </div>
+
+                            @*////////////////////////////////////////////////////////////////*@
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                @Html.LabelFor(model => model.last_name)
+                                @Html.EditorFor(model => model.last_name)
+                                <div class="field-validation-error">
+                                    @Html.ValidationMessageFor(model => model.last_name)
+                                </div>
+                            </div>
+                        </div>
+                        @*////////////////////////////////////////////////////////////////*@
+                        <div class="row">
+                            <div class="input-field col s6">
+
+                                <i class="material-icons prefix">phone</i>
+                                @Html.LabelFor(model => model.phone_number)
+                                @Html.EditorFor(model => model.phone_number)
+                                @Html.ValidationMessageFor(model => model.phone_number)
+                            </div>
+
+                            @*////////////////////////////////////////////////////////////////*@
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">local_post_office</i>
+                                @Html.LabelFor(model => model.email),
+                                @Html.EditorFor(model => model.email)
+                                @Html.ValidationMessageFor(model => model.email)
+                            </div>
+                        </div>
+
+                                @*////////////////////////////////////////////////////////////////*@
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">lock</i>
+                                @Html.LabelFor(model => model.password)
+                                @Html.EditorFor(model => model.password)
+                                @Html.ValidationMessageFor(model => model.password)
+                            </div>
+
+                            @*////////////////////////////////////////////////////////////////*@
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">lock</i>
+                                @Html.LabelFor(model => model.ConfirmPassword)
+                                @Html.EditorFor(model => model.ConfirmPassword)
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                            </div>
+                        </div>
+                                @*////////////////////////////////////////////////////////////////*@
+                                <p>
+                                
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                                        Odoslať
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </p>
+</form>
+                    }
+
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                    
+</body>
+            
+</html>

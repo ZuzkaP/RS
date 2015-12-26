@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Welcome to Speranza reservation system";
+}
+
+<h2>Index</h2>
+
+@if (@TempData["registration"] != null)
+{
+    <div class="alert alert-success"><b>Success!</b> @TempData["registration"]</div>
+}
+
+
