@@ -34,3 +34,6 @@ C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\bin\EntityFramework.
 C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\bin\EntityFramework.SqlServer.dll
 C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\bin\EntityFramework.xml
 C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\bin\EntityFramework.SqlServer.xml
+C:\Users\Zuzana\documents\visual studio 2015\Projects\RS\RS\obj\Debug\RS.csprojResolveAssemblyReference.cache
+C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\bin\Helpers.dll
+C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\bin\Helpers.pdb

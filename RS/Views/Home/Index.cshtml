@@ -5,9 +5,14 @@
 
 <h2>Index</h2>
 
+@if(@Request.IsAuthenticated) {
+    <h1>Hi! User is logged in</h1>
+}
+
 @if (@TempData["registration"] != null)
 {
     <div class="alert alert-success"><b>Success!</b> @TempData["registration"]</div>
+    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Login")'" />
 }
 
 
