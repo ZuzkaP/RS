@@ -26,7 +26,7 @@ namespace RS.Models
     
         public int user_id { get; set; }
 
-
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
         ErrorMessage = "Please provide valid email id")]
         public string email { get; set; }
@@ -44,6 +44,7 @@ namespace RS.Models
         public string phone_number { get; set; }
 
         [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [DataType(DataType.Password)]
         [Display(Name = "Password: ")]
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be 8 char long.")]

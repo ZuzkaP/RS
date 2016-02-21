@@ -3,62 +3,84 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="~/Scripts/materialize.min.css" media="screen,projection" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/materialize.min.js"></script>
+        </head>
+            @*<div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="bs-example">
+                        <div class="navbar-header">
 
-    <style type="text/css">
-        .bs-example {
-            margin: 20px;
-        }
+                            <div style="width: auto; background-color: #728ea7;">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <strong>@Html.Encode(User.Identity.Name)</strong>
+                                    @Html.ActionLink("Sign Out", "Logout", "Login")
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Register", "Register", "User")
+                                    <span> | </span>
+                                    @Html.ActionLink("Sign In", "Login", "Login")
+                                }
+                            </div>
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
 
-        hr {
-            margin: 60px 0;
-        }
-    </style>
-</head>
-<body>
+                            <ul class="nav nav-tabs">
+                                <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li class="active">@Html.ActionLink("About", "About", "Home")</li>
+                                <li class="active">@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                            </ul>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+
+<body>  
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (!Request.IsAuthenticated)
+                {
+                <li><a href="@Url.Action("Register", "User")"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="@Url.Action("Login", "Login")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                }
+                else
+                {
+                    <li>
+                       <a><strong>@Html.Encode(User.Identity.Name)</strong></a>
+                    </li>
+                    <li><a href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+
+                }
+            </ul>
+        </div>
+    </nav>
+
     <div class="masthead">
         <img src="~/Content/IMAGES/header.jpg" />
     </div>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="bs-example">
-                <div class="navbar-header">
 
-                    <div style="width: auto; background-color: #728ea7;">
-                        @if (Request.IsAuthenticated)
-                        {
-                            <strong>@Html.Encode(User.Identity.Name)</strong>
-                            @Html.ActionLink("Sign Out", "Logout", "Login")
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Register", "Register", "User")
-                            <span> | </span>
-                            @Html.ActionLink("Sign In", "Login", "Login")
-                        }
-                    </div> 
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
 
-                    <ul class="nav nav-tabs">
-                        <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li class="active">@Html.ActionLink("About", "About", "Home")</li>
-                        <li class="active">@Html.ActionLink("Contact", "Contact", "Home")</li>
-
-                    </ul>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav"></ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container body-content">
         @RenderBody()

@@ -29,21 +29,19 @@ namespace RS.Controllers
         public  ActionResult  Login(Users U)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
-            
+            //if (U.email != "" || U.password != "")
+            //{
                 if (U.IsValid(U.email, U.password))
                 {
                     FormsAuthentication.SetAuthCookie(U.email, U.RememberMe);
+                    FormsAuthentication.RedirectFromLoginPage(U.email, false);
 
-                Session["UserId"] = U.email;
-                FormsAuthentication.RedirectFromLoginPage(U.email, true);
-
-                return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Login data is incorrect!");
                 }
-           
+            //}
             return View(U);
         }
 
