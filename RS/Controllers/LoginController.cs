@@ -35,8 +35,8 @@ namespace RS.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(U.email, U.RememberMe);
                     FormsAuthentication.RedirectFromLoginPage(U.email, false);
-
-                }
+                 
+                }   
                 else
                 {
                     ModelState.AddModelError("", "Login data is incorrect!");

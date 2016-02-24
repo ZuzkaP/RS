@@ -17,16 +17,16 @@ namespace RS.Models
 
     public partial class Users
     {
-       
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
             this.users_roles = new HashSet<users_roles>();
         }
-    
+
         public int user_id { get; set; }
 
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+
         [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
         ErrorMessage = "Please provide valid email id")]
         public string email { get; set; }
@@ -44,13 +44,12 @@ namespace RS.Models
         public string phone_number { get; set; }
 
         [Required]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [DataType(DataType.Password)]
         [Display(Name = "Password: ")]
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be 8 char long.")]
         public string password { get; set; }
 
-        
+
 
         [Required]
         [DataType(DataType.Password)]
@@ -82,7 +81,7 @@ namespace RS.Models
                     .Add(new SqlParameter("@p", SqlDbType.NVarChar))
                     .Value = Helpers.SHA1.Encode(_password);
                 cn.Open();
-               
+
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -100,5 +99,5 @@ namespace RS.Models
         }
     }
 }
-   
+
 
