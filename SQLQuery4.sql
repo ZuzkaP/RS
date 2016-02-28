@@ -1,0 +1,1 @@
+﻿insert into Roles values(1,'admin')
