@@ -119,36 +119,15 @@
       <DependentUpon>All.edmx</DependentUpon>
       <LastGenOutput>All.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Roles.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Roles.edmx</DependentUpon>
-      <LastGenOutput>Roles.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Roles.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Roles.edmx</DependentUpon>
-      <LastGenOutput>Roles1.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\Users.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Users.edmx</DependentUpon>
       <LastGenOutput>Users.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Users.edmx.sql" />
     <Content Include="Models\Users.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Users.edmx</DependentUpon>
       <LastGenOutput>Users1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Users_Roles.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Users_Roles.edmx</DependentUpon>
-      <LastGenOutput>Users_Roles.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Users_Roles.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Users_Roles.edmx</DependentUpon>
-      <LastGenOutput>Users_Roles1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap-theme.min.css" />
@@ -162,25 +141,12 @@
     </EntityDeploy>
     <Content Include="Models\Users.edmx.diagram">
       <DependentUpon>Users.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap-theme.min.css.map" />
     <Content Include="Scripts\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\Roles.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Roles.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Roles.edmx.diagram">
-      <DependentUpon>Roles.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\Users_Roles.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Users_Roles.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Users_Roles.edmx.diagram">
-      <DependentUpon>Users_Roles.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\All.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>All.Designer.cs</LastGenOutput>
@@ -228,23 +194,11 @@
       <DependentUpon>All.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Roles.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Roles.Context.tt</DependentUpon>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>Users.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>All.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Roles.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Roles.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Roles1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Roles.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.Context.cs">
       <AutoGen>True</AutoGen>
@@ -252,7 +206,7 @@
       <DependentUpon>Users.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>All.tt</DependentUpon>
+      <DependentUpon>Users.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -264,24 +218,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Users.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users_Roles.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users_Roles.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\users_roles.cs">
       <DependentUpon>All.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users_Roles.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users_Roles.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users_Roles1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users_Roles.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\UserValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

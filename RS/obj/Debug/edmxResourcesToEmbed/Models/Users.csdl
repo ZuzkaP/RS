@@ -10,8 +10,35 @@
     <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="phone_number" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="roles_id" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Database1Model.FK__Users__roles_id__47DBAE45" FromRole="Users" ToRole="Role" />
   </EntityType>
   <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Roles" EntityType="Database1Model.Role" />
+    <AssociationSet Name="FK__Users__roles_id__47DBAE45" Association="Database1Model.FK__Users__roles_id__47DBAE45">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roles_id" />
+    </Key>
+    <Property Name="roles_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Database1Model.FK__Users__roles_id__47DBAE45" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK__Users__roles_id__47DBAE45">
+    <End Type="Database1Model.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="Database1Model.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roles_id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="roles_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

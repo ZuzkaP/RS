@@ -4,12 +4,21 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(Database1Model.Users)">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="roles_id" ColumnName="roles_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Database1Model.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="roles_id" ColumnName="roles_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

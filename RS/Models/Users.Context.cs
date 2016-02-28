@@ -26,5 +26,6 @@ namespace RS.Models
         }
     
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
     }
 }

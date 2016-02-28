@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
+
 namespace RS.Controllers
 {
     public class LoginController : Controller
@@ -31,7 +32,7 @@ namespace RS.Controllers
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             //if (U.email != "" || U.password != "")
             //{
-                if (U.IsValid(U.email, U.password))
+                if (UserValidator.IsValid(U.email, U.password))
                 {
                     FormsAuthentication.SetAuthCookie(U.email, U.RememberMe);
                     FormsAuthentication.RedirectFromLoginPage(U.email, false);
