@@ -206,7 +206,7 @@
       <DependentUpon>Users.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>Users.tt</DependentUpon>
+      <DependentUpon>All.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -218,7 +218,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Users.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\users_roles.cs">
+    <Compile Include="Models\UsersRoles.cs">
       <DependentUpon>All.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserValidator.cs" />
@@ -241,6 +241,7 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\RegisterSuccessfull.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\User\Maintanance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

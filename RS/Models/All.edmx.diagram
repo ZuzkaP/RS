@@ -7,9 +7,9 @@
       <Diagram DiagramId="e5058f81f04143f9ba5349a9bd37bd3e" Name="Diagram1">
         <EntityTypeShape EntityType="Database1Model3.Roles" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model3.Users" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Database1Model3.users_roles" Width="1.5" PointX="3.625" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="Database1Model3.FK__users_rol__roles__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="Database1Model3.FK__users_rol__users__29572725" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Database1Model3.UsersRoles" Width="1.5" PointX="2.875" PointY="3.25" />
+        <AssociationConnector Association="Database1Model3.fk_roles_id" />
+        <AssociationConnector Association="Database1Model3.FK__UsersRole__user___656C112C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

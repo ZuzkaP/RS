@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,8 @@ namespace RS.Controllers
     
     public class UserController : Controller
     {
+        private static int TRENER = 2;
+        private static int POUZIVATEL = 3;
         public object RegisterSuccessfull { get; private set; }
 
         [HttpGet]
@@ -20,6 +23,29 @@ namespace RS.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Maintanance()
+        {
+
+            Database1Entities db = null;
+            try
+            {
+                 db = new Database1Entities();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
+            }
+            return View(db.Users.ToList());
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -39,7 +65,8 @@ namespace RS.Controllers
                             string hashConfirm = Helpers.SHA1.Encode(U.ConfirmPassword);
                             U.ConfirmPassword = hashConfirm;
                             U.password = hash;
-
+                           
+                          
                             db.Users.Add(U);
                             db.SaveChanges();
                             ModelState.Clear();

@@ -17,14 +17,13 @@ namespace RS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Roles()
         {
-            this.users_roles = new HashSet<users_roles>();
+            this.UsersRoles = new HashSet<UsersRoles>();
         }
     
-        public int Id { get; set; }
         public string name { get; set; }
-        public string decription { get; set; }
+        public int roles_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<users_roles> users_roles { get; set; }
+        public virtual ICollection<UsersRoles> UsersRoles { get; set; }
     }
 }

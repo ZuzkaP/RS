@@ -34,7 +34,7 @@ namespace RS
                 var cmd = new SqlCommand(_sql, cn);
                 cmd.Parameters
                   .Add(new SqlParameter("@u", SqlDbType.NVarChar))
-                  .Value = "admin@admin";
+                  .Value = "admin@admin.sk";
                 cn.Open();
 
                 var reader = cmd.ExecuteReader();

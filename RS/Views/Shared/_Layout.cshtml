@@ -61,11 +61,16 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (!Request.IsAuthenticated)
                 {
+
                 <li><a href="@Url.Action("Register", "User")"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="@Url.Action("Login", "Login")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 }
                 else
                 {
+                    if (User.Identity.Name == "admin@admin.sk")
+                    {
+                        <li><a href="@Url.Action("Maintanance", "User")"><span class="glyphicon glyphicon-cog"></span> Settings </a></li>
+                    }
                     <li>
                        <a><strong>@Html.Encode(User.Identity.Name)</strong></a>
                     </li>
