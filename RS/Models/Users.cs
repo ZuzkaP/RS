@@ -22,9 +22,9 @@ namespace RS.Models
         }
     
         public int user_id { get; set; }
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
+       [DisplayFormat(ConvertEmptyStringToNull = false)]
         [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
-ErrorMessage = "Please provide valid email id")]
+        ErrorMessage = "Please provide valid email id")]
         public string email { get; set; }
 
         [Required]
@@ -56,7 +56,6 @@ ErrorMessage = "Please provide valid email id")]
 
         [Display(Name = "Remember on this computer")]
         public bool RememberMe { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRoles> UsersRoles { get; set; }
     }

@@ -17,26 +17,9 @@
     <Property Name="last_name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="roles_id" Type="int" />
   </EntityType>
-  <Association Name="FK__Users__roles_id__47DBAE45">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="roles_id" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="roles_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Database1ModelStoreContainer">
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Users__roles_id__47DBAE45" Association="Self.FK__Users__roles_id__47DBAE45">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

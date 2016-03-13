@@ -4,7 +4,6 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="IsTypeOf(Database1Model.Users)">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="roles_id" ColumnName="roles_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />

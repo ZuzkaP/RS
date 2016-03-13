@@ -27,10 +27,10 @@ namespace RS.Controllers
         public ActionResult Maintanance()
         {
 
-            Database1Entities db = null;
+            Database1Entities4 db = null;
             try
             {
-                 db = new Database1Entities();
+                 db = new Database1Entities4();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -55,9 +55,9 @@ namespace RS.Controllers
             {
                 try
                 {
-                    using (Database1Entities db = new Database1Entities())
+                    using (Database1Entities4 db = new Database1Entities4())
                     {
-
+                        UsersRoles usersRoles = new UsersRoles();
                         var count = db.Users.Count(u => u.email == U.email);
                         if (count == 0)
                         {
@@ -65,9 +65,13 @@ namespace RS.Controllers
                             string hashConfirm = Helpers.SHA1.Encode(U.ConfirmPassword);
                             U.ConfirmPassword = hashConfirm;
                             U.password = hash;
-                           
                           
                             db.Users.Add(U);
+                            db.SaveChanges();
+                            usersRoles.roles_id = POUZIVATEL;
+                        
+                            usersRoles.user_id = U.user_id;
+                            db.UsersRoles.Add(usersRoles);
                             db.SaveChanges();
                             ModelState.Clear();
                             U = null;

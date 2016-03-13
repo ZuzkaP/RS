@@ -109,25 +109,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\All.Context.tt">
+    <Content Include="Models\UsersModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>All.edmx</DependentUpon>
-      <LastGenOutput>All.Context.cs</LastGenOutput>
+      <DependentUpon>UsersModel.edmx</DependentUpon>
+      <LastGenOutput>UsersModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\All.tt">
+    <Content Include="Models\UsersModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>All.edmx</DependentUpon>
-      <LastGenOutput>All.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Users.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Users.edmx</DependentUpon>
-      <LastGenOutput>Users.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Users.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Users.edmx</DependentUpon>
-      <LastGenOutput>Users1.cs</LastGenOutput>
+      <DependentUpon>UsersModel.edmx</DependentUpon>
+      <LastGenOutput>UsersModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap-theme.min.css" />
@@ -135,24 +125,16 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.css" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Users.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Users.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Users.edmx.diagram">
-      <DependentUpon>Users.edmx</DependentUpon>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Scripts\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap-theme.min.css.map" />
     <Content Include="Scripts\bootstrap.css.map" />
     <Content Include="Scripts\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\All.edmx">
+    <EntityDeploy Include="Models\UsersModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>All.Designer.cs</LastGenOutput>
+      <LastGenOutput>UsersModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\All.edmx.diagram">
-      <DependentUpon>All.edmx</DependentUpon>
+    <Content Include="Models\UsersModel.edmx.diagram">
+      <DependentUpon>UsersModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -178,48 +160,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\All.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>All.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\All.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>All.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\All.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>All.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>Users.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Roles.cs">
-      <DependentUpon>All.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users.Context.tt</DependentUpon>
+      <DependentUpon>UsersModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>All.tt</DependentUpon>
+      <DependentUpon>UsersModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.Designer.cs">
+    <Compile Include="Models\UsersModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Users.edmx</DependentUpon>
+      <DependentUpon>UsersModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users1.cs">
+    <Compile Include="Models\UsersModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Users.tt</DependentUpon>
+      <DependentUpon>UsersModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsersModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsersModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\UsersRoles.cs">
-      <DependentUpon>All.tt</DependentUpon>
+      <DependentUpon>UsersModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,6 +205,8 @@
     <Content Include="Views\User\RegisterSuccessfull.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\User\Maintanance.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\User\View1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

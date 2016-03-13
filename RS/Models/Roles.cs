@@ -20,8 +20,8 @@ namespace RS.Models
             this.UsersRoles = new HashSet<UsersRoles>();
         }
     
-        public string name { get; set; }
         public int roles_id { get; set; }
+        public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRoles> UsersRoles { get; set; }

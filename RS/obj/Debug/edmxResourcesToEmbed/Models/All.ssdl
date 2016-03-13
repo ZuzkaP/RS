@@ -2,11 +2,10 @@
 <Schema Namespace="Database1Model3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Roles">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="roles_id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="decription" Type="varchar" MaxLength="50" />
+    <Property Name="roles_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -16,52 +15,52 @@
     <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="first_name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="last_name" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="password" Type="char" MaxLength="41" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="users_roles">
+  <EntityType Name="UsersRoles">
     <Key>
-      <PropertyRef Name="users_roles_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="users_roles_id" Type="int" Nullable="false" />
-    <Property Name="users_id" Type="int" />
-    <Property Name="roles_id" Type="int" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="roles_id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
-  <Association Name="FK__users_rol__roles__2A4B4B5E">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-    <End Role="users_roles" Type="Self.users_roles" Multiplicity="*" />
+  <Association Name="FK__UsersRole__roles__6E01572D">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Roles">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="roles_id" />
       </Principal>
-      <Dependent Role="users_roles">
+      <Dependent Role="UsersRoles">
         <PropertyRef Name="roles_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__users_rol__users__29572725">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="users_roles" Type="Self.users_roles" Multiplicity="*" />
+  <Association Name="FK__UsersRole__user___656C112C">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="user_id" />
       </Principal>
-      <Dependent Role="users_roles">
-        <PropertyRef Name="users_id" />
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Database1Model3StoreContainer">
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="users_roles" EntityType="Self.users_roles" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__users_rol__roles__2A4B4B5E" Association="Self.FK__users_rol__roles__2A4B4B5E">
+    <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__UsersRole__roles__6E01572D" Association="Self.FK__UsersRole__roles__6E01572D">
       <End Role="Roles" EntitySet="Roles" />
-      <End Role="users_roles" EntitySet="users_roles" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
     </AssociationSet>
-    <AssociationSet Name="FK__users_rol__users__29572725" Association="Self.FK__users_rol__users__29572725">
+    <AssociationSet Name="FK__UsersRole__user___656C112C" Association="Self.FK__UsersRole__user___656C112C">
       <End Role="Users" EntitySet="Users" />
-      <End Role="users_roles" EntitySet="users_roles" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
