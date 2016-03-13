@@ -13,6 +13,7 @@ namespace RS.Controllers
     
     public class UserController : Controller
     {
+        private Database1Entities4 db = new Database1Entities4();
         private static int TRENER = 2;
         private static int POUZIVATEL = 3;
         public object RegisterSuccessfull { get; private set; }
@@ -26,26 +27,37 @@ namespace RS.Controllers
         [HttpGet]
         public ActionResult Maintanance()
         {
-
-            Database1Entities4 db = null;
-            try
-            {
-                 db = new Database1Entities4();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Trace.TraceInformation("Property: {0} Error: {1}",
-                                                validationError.PropertyName,
-                                                validationError.ErrorMessage);
-                    }
-                }
-            }
+           
             return View(db.Users.ToList());
         }
+
+
+        [HttpGet]
+        public ActionResult Edit(Users user,string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
+        {
+            List<Users> editUser = db.Users.ToList();
+            if (!String.IsNullOrEmpty(name))
+            {
+                Users edited = new Users { email = email, first_name = name, last_name = last_name, phone_number = phone_number };
+                
+                    
+            }
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

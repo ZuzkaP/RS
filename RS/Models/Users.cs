@@ -58,5 +58,47 @@ namespace RS.Models
         public bool RememberMe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRoles> UsersRoles { get; set; }
+
+        private static ICollection<Roles> getRoles(ICollection<UsersRoles> from)
+        {
+            ICollection<Roles> c = new List<Roles>;
+            foreach(UsersRoles ur in from)
+            {
+                c.Add(ur.Roles);
+            }
+
+            return c;
+        }
+
+        private static bool ArraysAreSame(ICollection<Roles> c1, ICollection<Roles> c2)
+        {
+            foreach(Roles userRole in c1)
+            {
+                if(!c2.Contains(userRole))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(!(obj is Users))
+            {
+                return false;
+            }
+
+            if(obj == this)
+            {
+                return true;
+            }
+
+            Users other = (Users)obj;
+            return email.Equals(other.email) && first_name.Equals(other.first_name) 
+                && last_name.Equals(other.last_name) && phone_number.Equals(other.phone_number) 
+                && ArraysAreSame(getRoles(UsersRoles), getRoles(other.UsersRoles));
+        }
     }
 }

@@ -9,7 +9,6 @@ namespace RS.Models
 {
     public class UserValidator
     {
-
         public static bool IsValid(string email, string _password)
         {
             using (var cn = new SqlConnection(@" Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename" +
