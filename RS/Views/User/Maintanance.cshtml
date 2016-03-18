@@ -1,0 +1,61 @@
+﻿@model List<RS.Models.Users>
+@*@model RS.Models.Users*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Users</h4>
+        <hr />
+        <table class="responsive-table bordered">
+            <thead>
+                <tr>
+                    <th>Meno: </th>
+                    <th>Priezvisko: </th>
+                    <th>Tel. číslo: </th>
+                    <th>Email: </th>
+                    <th>Rola: </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (RS.Models.Users user in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => user.first_name)</td>
+
+                        <td>@Html.DisplayFor(modelItem => user.last_name)</td>
+
+                        <td>@Html.DisplayFor(modelItem => user.phone_number)</td>
+
+                        <td> @Html.DisplayFor(modelItem => user.email)</td>
+
+                        <td>
+                            <form>
+                                @{
+                                    foreach (var role in user.UsersRoles)
+                                    {
+
+                                        <p>
+                                            <input id="@user.email" type="checkbox" checked="checked">
+                                            <label for="@user.email">@role.Roles.name</label><br />
+                                        </p>
+
+                                    }
+                                }
+                            </form>
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+
+
+        </table>
+
+    </div>
+                                }
+
+
+<p>
+    |
+    @Html.ActionLink("Back to List", "Index")
+</p>
