@@ -31,7 +31,7 @@ namespace RS
             Database1Entities4 db =  db = new Database1Entities4();
            
             using (var cn = new SqlConnection(@" Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename" +
-              @"='C:\Users\Zuzana\Documents\Visual Studio 2015\Projects\RS\RS\App_Data\Database1.mdf';Integrated Security=True"))
+              @"='C:\Users\Zuzka\Documents\Visual Studio 2015\Projects\RS\RS\App_Data\Database1.mdf';Integrated Security=True"))
             {
                 string _sql = @"SELECT [user_id] FROM [dbo].[Users] " +
                        @"WHERE [email] = @u ";

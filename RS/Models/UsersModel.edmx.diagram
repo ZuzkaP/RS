@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="33a7bd1e00ac4ab68b187ec5d06b6c12" Name="Diagram1">
-        <EntityTypeShape EntityType="Database1Model.Roles" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Database1Model.Users" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Roles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Users" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.UsersRoles" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="Database1Model.FK__UsersRole__roles__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="Database1Model.FK__UsersRole__user___656C112C" ManuallyRouted="false" />

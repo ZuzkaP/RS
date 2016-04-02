@@ -61,7 +61,7 @@ namespace RS.Models
 
         private static ICollection<Roles> getRoles(ICollection<UsersRoles> from)
         {
-            ICollection<Roles> c = new List<Roles>;
+            ICollection<Roles> c = new List<Roles>();
             foreach(UsersRoles ur in from)
             {
                 c.Add(ur.Roles);
