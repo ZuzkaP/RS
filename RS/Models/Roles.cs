@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RS.Models
+namespace RS.Core
 {
     using System;
     using System.Collections.Generic;

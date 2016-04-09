@@ -1,84 +1,63 @@
-﻿@model RS.Models.Users
-<!DOCTYPE html>
-
+﻿@model RS.Core.Users
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<html lang="en">
-<head>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="~/Scripts/materialize.min.css" media="screen,projection" />
-    @{
-        ViewBag.Title = "Login";
-    }
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/materialize.min.js"></script>
-
-    <h4>Prihlásenie</h4>
-
-    @using (Html.BeginForm())
-            {
-
-        @Html.ValidationSummary(true, "Login failed. Check your login details.");
-        @Html.AntiForgeryToken()
-
-
-        if (ViewBag.Message != null)
+<div class="container">
+    <div class="container">
+        <h4>Login</h4>
+        @using (Html.BeginForm())
         {
-            <div style="border-color: red">
+            @Html.ValidationSummary(true, "Login failed. Check your login details.");
+            @Html.AntiForgeryToken();
 
-                <p style="color: red;">@ViewBag.Message</p>
+            if (ViewBag.Message != null)
+            {
+                <div style="border-color: red">
+                    <p style="color: red;">@ViewBag.Message</p>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col s12 z-depth-6 card-panel">
+                    <form class="login-form">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">local_post_office</i>
+                                @Html.LabelFor(model => model.email)
+                                @Html.EditorFor(model => model.email, new { @class = "validate"})
+                                @Html.ValidationMessageFor(model => model.email)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">lock</i>
+                                @Html.LabelFor(model => model.password)
+                                @Html.EditorFor(model => model.password)
+                                @Html.ValidationMessageFor(model => model.password)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="checkbox" class="filled-in" id="RememberMe" name="RememberMe" value="true" checked />
+                                @Html.LabelFor(m => m.RememberMe, new { @class = "centered" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn teal waves-effect waves-light centered" type="submit" name="action">
+                                    Odoslať
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         }
-
-        <form class="col s12">
-
-            @*////////////////////////////////////////////////////////////////*@
-            <div class="input-field col s6">
-                <i class="material-icons prefix">local_post_office</i>
-                @Html.LabelFor(model => model.email),
-                @Html.EditorFor(model => model.email)
-                @Html.ValidationMessageFor(model => model.email)
-            </div>
-
-
-            @*////////////////////////////////////////////////////////////////*@
-
-            <div class="input-field col s6">
-                <i class="material-icons prefix">lock</i>
-                @Html.LabelFor(model => model.password)
-                @Html.EditorFor(model => model.password)
-                @Html.ValidationMessageFor(model => model.password)
-            </div>
-
-            @*////////////////////////////////////////////////////////////////*@
-
-
-            <input type="checkbox" class="filled-in" id="RememberMe" name="RememberMe" value="true" checked />
-            @Html.LabelFor(m => m.RememberMe)
-
-
-            <p>
-
-                <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Odoslať
-                    <i class="material-icons right">send</i>
-                </button>
-            </p>
-        </form>
-    }
-
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-
-</body>
-
-</html>
+</div>

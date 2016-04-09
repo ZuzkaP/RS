@@ -3,11 +3,75 @@
     ViewBag.Title = "Welcome to Speranza reservation system";
 }
 
-<h2>Index</h2>
-
-@if(@Request.IsAuthenticated) {
-    <h1>Hi! User is logged in</h1>
+@if (@Request.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel teal">
+                <span class="white-text">
+                    <p style="font-size: 28px" class="center">Hey! Welcome back. :)</p>
+                </span>
+            </div>
+        </div>
+    </div>
 }
+else
+{
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel teal">
+                <span class="white-text">
+                    <p style="font-size: 28px" class="center">Welcome anonymous user. In order to see all the features, please log in with an existing account or register.</p>
+                </span>
+            </div>
+        </div>
+    </div>
+    
+}
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">info_outline</i></h2>
+                    <h5 class="center">Reservation system</h5>
+
+                    <p class="light">
+                        We provide a reservation system for users and provide UI for trainers to
+                        manage their fitness classes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+                    <h5 class="center">User Focused</h5>
+
+                    <p class="light">
+                        In case of new user, please register yourself and you may continue to use our app :).
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+                    <h5 class="center">Easy to work with</h5>
+
+                    <p class="light">
+                        Reservation system is really easy to use.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+    <div class="parallax"><img src="~/Content/IMAGES/header.jpg"></div>
+</div>
 
 @if (@TempData["registration"] != null)
 {

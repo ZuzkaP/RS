@@ -1,4 +1,4 @@
-﻿using RS.Models;
+﻿using RS.Core;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -10,7 +10,6 @@ using System.Web.Security;
 
 namespace RS.Controllers
 {
-    
     public class UserController : Controller
     {
         private Database1Entities4 db = new Database1Entities4();
@@ -27,37 +26,19 @@ namespace RS.Controllers
         [HttpGet]
         public ActionResult Maintanance()
         {
-           
             return View(db.Users.ToList());
         }
-
-
+        
         [HttpGet]
-        public ActionResult Edit(Users user,string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
+        public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Core.Roles> userRoles)
         {
             List<Users> editUser = db.Users.ToList();
             if (!String.IsNullOrEmpty(name))
             {
                 Users edited = new Users { email = email, first_name = name, last_name = last_name, phone_number = phone_number };
-                
-                    
             }
             return View();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -77,11 +58,11 @@ namespace RS.Controllers
                             string hashConfirm = Helpers.SHA1.Encode(U.ConfirmPassword);
                             U.ConfirmPassword = hashConfirm;
                             U.password = hash;
-                          
+
                             db.Users.Add(U);
                             db.SaveChanges();
                             usersRoles.roles_id = POUZIVATEL;
-                        
+
                             usersRoles.user_id = U.user_id;
                             db.UsersRoles.Add(usersRoles);
                             db.SaveChanges();
@@ -89,14 +70,12 @@ namespace RS.Controllers
                             U = null;
                             TempData["registration"] = "You are successfully registered.";
                             return RedirectToAction("Index", "Home");
-
                         }
                         else
                         {
                             ViewBag.Message = "User with this email exists";
                             return View();
                         }
-
                     }
                 }
                 catch (DbEntityValidationException ex)

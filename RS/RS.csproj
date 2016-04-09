@@ -162,6 +162,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Core\QueryParameter.cs" />
+    <Compile Include="Core\SQLFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,7 +191,7 @@
     <Compile Include="Models\UsersRoles.cs">
       <DependentUpon>UsersModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserValidator.cs" />
+    <Compile Include="Core\UserValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,88 +1,82 @@
 ﻿@model List<RS.Models.Users>
-@*@model RS.Models.Users*@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Users</h4>
-        <hr />
-        <table class="responsive-table bordered">
-            <thead>
-                <tr>
-                    <th>Meno: </th>
-                    <th>Priezvisko: </th>
-                    <th>Tel. číslo: </th>
-                    <th>Email: </th>
-                    <th>Rola: </th>
-                    <th> @*/*Control*/*@</th>
-                </tr>
-            </thead>
-            <tbody>
+    <div class="container">
+        <div class="form-horizontal">
+            <h4>Users</h4>
+            <hr />
+            <table class="responsive-table bordered">
+                <thead>
+                    <tr>
+                        <th>Meno: </th>
+                        <th>Priezvisko: </th>
+                        <th>Tel. číslo: </th>
+                        <th>Email: </th>
+                        <th>Rola: </th>
+                        <th> @*/*Control*/*@</th>
+                    </tr>
+                </thead>
+                <tbody>
                 @foreach (RS.Models.Users user in Model)
                 {
-                    <tr>
-                        <td><span id="user-first-name">@Html.DisplayFor(modelItem => user.first_name)</span></td>
+                        <tr>
+                            <td><span id="user-first-name">@Html.DisplayFor(modelItem => user.first_name)</span></td>
 
-                        <td><span id="user-last-name">@Html.DisplayFor(modelItem => user.last_name)</span></td>
+                            <td><span id="user-last-name">@Html.DisplayFor(modelItem => user.last_name)</span></td>
 
-                        <td><span id="user-phone-number">@Html.DisplayFor(modelItem => user.phone_number)</span></td>
+                            <td><span id="user-phone-number">@Html.DisplayFor(modelItem => user.phone_number)</span></td>
 
-                        <td class="dont"><span>@Html.DisplayFor(modelItem => user.email)</span></td>
+                            <td class="dont"><span>@Html.DisplayFor(modelItem => user.email)</span></td>
 
-                        <td class="editable">
-                            <form>
-                                <p class="user-roles">
-                                    <input id="admin-role-@user.email" type="checkbox" disabled>
-                                    <label for="admin-role-@user.email">admin</label><br />
-                               
-                                    <input id="uzivatel-role-@user.email" type="checkbox" disabled>
-                                    <label for="uzivatel-role-@user.email">uzivatel</label><br />
-                               
-                                    <input id="trener-role-@user.email" type="checkbox" disabled>
-                                    <label for="trener-role-@user.email">trener</label><br />
-                                </p>
-                                @{
-                                    foreach (var role in user.UsersRoles)
-                                    {
-                                        <script>
-                                            var element = document.getElementById('@role.Roles.name-role-@user.email');
-                                            $(element).attr('checked', 'checked');
-                                        </script>
+                            <td class="editable">
+                                <form>
+                                    <p class="user-roles">
+                                        <input id="admin-role-@user.email" type="checkbox" disabled>
+                                        <label for="admin-role-@user.email">admin</label><br />
+
+                                        <input id="uzivatel-role-@user.email" type="checkbox" disabled>
+                                        <label for="uzivatel-role-@user.email">uzivatel</label><br />
+
+                                        <input id="trener-role-@user.email" type="checkbox" disabled>
+                                        <label for="trener-role-@user.email">trener</label><br />
+                                    </p>
+                                    @{
+                                        foreach (var role in user.UsersRoles)
+                                        {
+                                            <script>
+                                                var element = document.getElementById('@role.Roles.name-role-@user.email');
+                                                $(element).attr('checked', 'checked');
+                                            </script>
+                                        }
                                     }
-                                }
-                            </form>
-                        </td>
-                        <td class="editable2">
-                            <button class="EditButton" >Edit</button>
-                            
-                            <div class="submit-wrapper" style="display: none;">
-                                <input class="save-button" type="button" value="Save" />
-                                <input class="cancel-button" type="button" value="Cancel" />
-                            </div>
-                        </td>
-                    </tr>
+                                </form>
+                            </td>
+                            <td class="editable2">
+                                <button class="EditButton">Edit</button>
+
+                                <div class="submit-wrapper" style="display: none;">
+                                    <input class="save-button" type="button" value="Save" />
+                                    <input class="cancel-button" type="button" value="Cancel" />
+                                </div>
+                            </td>
+                        </tr>
                 }
-            </tbody>
+                </tbody>
 
 
-        </table>
+            </table>
 
-        <div id="saveModal" class="modal">
-            <div class="modal-content">
-                <h4>Found changes</h4>
-                <p>We found, that you changed user data. Do you want to save this data into database?</p>
+            <div id="saveModal" class="modal">
+                <div class="modal-content">
+                    <h4>Found changes</h4>
+                    <p>We found, that you changed user data. Do you want to save this data into database?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:saveChanges()" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="javascript:saveChanges()" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
+
         </div>
-
-    </div>
-                                }
-
-
-<p>
-    |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </div>                    
+}

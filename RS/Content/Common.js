@@ -1,6 +1,9 @@
 ﻿var changed = false;
 $(function () {
     $(function () {
+        $(".button-collapse").sideNav();
+        $('.parallax').parallax();
+
         $(document).bind('keyup', function (event) {
             if (event.keyCode === 27) {
                 disableInputs();
@@ -13,17 +16,13 @@ $(function () {
 
         $('.cancel-button').bind('click', function () {
             disableInputs();
-            $(this).parent().toggle();
-            $(this).parent().parent().find('.EditButton').show();
         });
 
         $('.EditButton').button().bind('click', function (event) {
             event.preventDefault();
             disableInputs();
 
-            disabled = false;
-            
-            var tr = event.target.offsetParent.parentElement;
+            var tr = event.target.offsetParent.parentElement.parentElement;
             $(tr).find('td.editable2').find('.submit-wrapper').show();
             $(tr).find("td").not(".editable,.editable2,.dont").each(function (index, item) {
                 convertToInput(item);
@@ -34,17 +33,29 @@ $(function () {
 
             $(this).hide();
         });
-        $('button').button();
+
+        $('.EditButton').button();
+        $('.save-button').button();
+        $('.cancel-button').button();
+
     });
 });
 
 function disableInputs() {
     if (changed) {
         $('#saveModal').openModal();
+        changed = false;
     }
 
     $('td').not('.editable,.editable2,.dont').each(function (index, item) {
         convertToSpan(item);
+    });
+
+    $('td.editable2').find('.submit-wrapper').each(function (index, item) {
+        if ($(item).is(':visible')) {
+            $(item).hide();
+            $(item).parent().find('.EditButton').show();
+        }
     });
 
     deactivateAllCheckBoxes();

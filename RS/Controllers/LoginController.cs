@@ -1,4 +1,4 @@
-﻿using RS.Models;
+﻿using RS.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,27 +27,20 @@ namespace RS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult  Login(Users U)
+        public ActionResult Login(Users U)
         {
             var errors = ModelState.Values.SelectMany(v => v.Errors);
-            //if (U.email != "" || U.password != "")
-            //{
-                if (UserValidator.IsValid(U.email, U.password))
-                {
-                    FormsAuthentication.SetAuthCookie(U.email, U.RememberMe);
-                    FormsAuthentication.RedirectFromLoginPage(U.email, false);
-                 
-                }   
-                else
-                {
-                    ModelState.AddModelError("", "Login data is incorrect!");
-                }
-            //}
+            if (UserValidator.IsValid(U.email, U.password))
+            {
+                FormsAuthentication.SetAuthCookie(U.email, U.RememberMe);
+                FormsAuthentication.RedirectFromLoginPage(U.email, false);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Login data is incorrect!");
+            }
             return View(U);
         }
-
-
-
 
         public ActionResult Logout()
         {
