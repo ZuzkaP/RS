@@ -1,4 +1,5 @@
 ﻿using RS.Core;
+using RS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -12,7 +13,7 @@ namespace RS.Controllers
 {
     public class UserController : Controller
     {
-        private Database1Entities4 db = new Database1Entities4();
+        private MainDB db = new MainDB();
         private static int TRENER = 2;
         private static int POUZIVATEL = 3;
         public object RegisterSuccessfull { get; private set; }
@@ -30,7 +31,7 @@ namespace RS.Controllers
         }
         
         [HttpGet]
-        public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Core.Roles> userRoles)
+        public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
         {
             List<Users> editUser = db.Users.ToList();
             if (!String.IsNullOrEmpty(name))
@@ -48,7 +49,7 @@ namespace RS.Controllers
             {
                 try
                 {
-                    using (Database1Entities4 db = new Database1Entities4())
+                    using (MainDB db = new MainDB())
                     {
                         UsersRoles usersRoles = new UsersRoles();
                         var count = db.Users.Count(u => u.email == U.email);

@@ -1,4 +1,4 @@
-﻿using RS.Core;
+﻿using RS.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +26,6 @@ namespace RS
 
         private static void checkIfAdminExists()
         {
-            Database1Entities4 db = db = new Database1Entities4();
             QueryParameter param = QueryParameter.Create().Name("@u").Type(SqlDbType.NVarChar).Value("admin@admin.sk");
             var reader = SQLFactory.Instance.SelectFromWhere(
                 @"[user_id]",
