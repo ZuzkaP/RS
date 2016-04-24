@@ -59,6 +59,8 @@ namespace RS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRoles> UsersRoles { get; set; }
 
+        public ICollection<Roles> Roles { get; set; }
+
         private static ICollection<Roles> getRoles(ICollection<UsersRoles> from)
         {
             ICollection<Roles> c = new List<Roles>();

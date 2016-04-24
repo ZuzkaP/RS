@@ -4,13 +4,31 @@
     @Html.AntiForgeryToken()
     <div class="container">
         <div class="form-horizontal">
+
             <h4>Users</h4>
             <hr />
+            @using (Html.BeginForm())
+            {
+                <p>
+                    <h6> Nájdi podľa mena: </h6>
+                     @Html.TextBox("name") <br />
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        Nájdi
+                        <i class="material-icons right">send</i>
+                    </button>
+                </p>
+            } 
+
+
             <table class="responsive-table bordered">
                 <thead>
                     <tr>
-                        <th>Meno: </th>
-                        <th>Priezvisko: </th>
+                        <th>
+                        @Html.ActionLink("Meno: ", "Maintanance", new { sortOrder = ViewBag.FirstNameSortParm })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Priezvisko:", "Maintanance", new { sortOrder = ViewBag.LastNameSortParm })
+                        </th>
                         <th>Tel. číslo: </th>
                         <th>Email: </th>
                         <th>Rola: </th>

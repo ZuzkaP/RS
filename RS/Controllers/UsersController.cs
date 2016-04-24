@@ -25,12 +25,60 @@ namespace RS.Controllers
         }
 
         [HttpGet]
-        public ActionResult Maintanance()
+        public ActionResult Maintanance(string sortOrder, string first_name)
         {
-            return View(db.Users.ToList());
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "Meno:" : "";
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "Priezvisko:" : "";
+
+
+            var users = from s in db.Users
+                        select s;
+            if (!String.IsNullOrEmpty(first_name))
+            {
+                users = users.Where(s => s.first_name.Contains(first_name));
+            }
+
+            switch (sortOrder)
+            {
+                case "Meno:":
+                    users = users.OrderByDescending(s => s.first_name);
+                    break;
+                case "Priezvisko:":
+                    users = users.OrderByDescending(s => s.last_name);
+                    break;
+                default:
+                    users = users.OrderBy(s => s.last_name);
+                    break;
+            }
+            return View(users.ToList());
         }
-        
-        [HttpGet]
+
+
+
+        [HttpPost]
+        public ActionResult Maintanance(string name)
+        {
+            var users = from s in db.Users
+                        select s;
+            if (!String.IsNullOrEmpty(name))
+            {
+                users = users.Where(s => s.first_name.Contains(name) || s.last_name.Contains(name));
+            }
+            return View(users.ToList());
+        }
+
+        //[HttpGet]
+        //public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
+        //{
+        //    List<Users> editUser = db.Users.ToList();
+        //    if (!String.IsNullOrEmpty(name))
+        //    {
+        //        Users edited = new Users { email = email, first_name = name, last_name = last_name, phone_number = phone_number };
+        //    }
+        //    return View();
+        //}
+
+        [HttpPost]
         public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
         {
             List<Users> editUser = db.Users.ToList();
@@ -39,6 +87,12 @@ namespace RS.Controllers
                 Users edited = new Users { email = email, first_name = name, last_name = last_name, phone_number = phone_number };
             }
             return View();
+        }
+
+        [HttpPost]
+        public void Save(Users user)
+        {
+            Console.WriteLine(user.last_name);
         }
 
         [HttpPost]
