@@ -163,8 +163,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Core\MainDB.cs" />
-    <Compile Include="Core\QueryParameter.cs" />
-    <Compile Include="Core\SQLFactory.cs" />
+    <Compile Include="Core\SQL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

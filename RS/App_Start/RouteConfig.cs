@@ -21,54 +21,34 @@ namespace RS
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
             checkIfAdminExists();
         }
 
         private static void checkIfAdminExists()
         {
-            QueryParameter param = QueryParameter.Create().Name("@u").Type(SqlDbType.NVarChar).Value("admin@admin.sk");
-            var reader = SQLFactory.Instance.SelectFromWhere(
-                @"[user_id]",
-                @"[dbo].[Users]",
-                @"[email] = @u",
-                param);
-
-            if (!reader.HasRows)
+            bool found = false;
+            foreach (Users u in SQL.Instance.Database.Users)
             {
-                reader.Dispose();
-
-                QueryParameter passwParameter = QueryParameter.Create().Name("@p").Type(SqlDbType.NVarChar).Value(Helpers.SHA1.Encode("admin1234"));
-                QueryParameter emailParameter = QueryParameter.Create().Name("@e").Type(SqlDbType.NVarChar).Value("admin@admin.sk");
-                QueryParameter firstNameParameter = QueryParameter.Create().Name("@a").Type(SqlDbType.NVarChar).Value("admin");
-                QueryParameter lastNameParameter = QueryParameter.Create().Name("@b").Type(SqlDbType.NVarChar).Value("admin");
-                QueryParameter phoneParameter = QueryParameter.Create().Name("@d").Type(SqlDbType.NVarChar).Value("0");
-
-                SQLFactory.Instance.InsertInto(
-                    @"Users",
-                    @"email,first_name,last_name,password,phone_number",
-                    @"@e,@a,@b,@p,@d",
-                    passwParameter,
-                    emailParameter,
-                    firstNameParameter,
-                    lastNameParameter,
-                    phoneParameter);
-
-                int user_id = Int32.Parse(SQLFactory.Instance.SelectFromWhereScalar(
-                    @"*",
-                    @"Users",
-                    @"first_name = 'admin'",
-                    null).ToString()
-                    );
-
-                QueryParameter userParameter = QueryParameter.Create().Name("@u").Type(SqlDbType.NVarChar).Value(user_id);
-                QueryParameter roleParameter = QueryParameter.Create().Name("@r").Type(SqlDbType.NVarChar).Value(1);
-                SQLFactory.Instance.InsertInto(@"UsersRoles", @"user_id,roles_id", @"@u,@r", userParameter, roleParameter);
+                if (u.email.Equals("admin@admin.sk"))
+                {
+                    found = true;
+                    break;
+                }
             }
-            else
+
+            if (!found)
             {
-                reader.Dispose();
+                Users admin = new Users();
+                admin.email = "admin@admin.sk";
+                admin.password = Helpers.SHA1.Encode("admin1234");
+                admin.first_name = "admin";
+                admin.last_name = "admin";
+                admin.phone_number = "+421 900 000 000";
+
+                SQL.Instance.Database.Users.Add(admin);
+                SQL.Instance.Database.SaveChanges();
             }
         }
     }
 }
-
