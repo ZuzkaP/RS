@@ -1,1 +1,1 @@
-﻿delete from Users
+﻿
