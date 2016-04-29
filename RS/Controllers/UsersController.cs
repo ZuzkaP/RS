@@ -13,7 +13,6 @@ namespace RS.Controllers
 {
     public class UserController : Controller
     {
-        private MainDB db = new MainDB();
         private static int TRENER = 2;
         private static int POUZIVATEL = 3;
         public object RegisterSuccessfull { get; private set; }
@@ -31,7 +30,7 @@ namespace RS.Controllers
             ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "Priezvisko:" : "";
 
 
-            var users = from s in db.Users
+            var users = from s in SQL.Instance.Database.Users
                         select s;
             if (!String.IsNullOrEmpty(first_name))
             {
@@ -52,13 +51,11 @@ namespace RS.Controllers
             }
             return View(users.ToList());
         }
-
-
-
+        
         [HttpPost]
         public ActionResult Maintanance(string name)
         {
-            var users = from s in db.Users
+            var users = from s in SQL.Instance.Database.Users
                         select s;
             if (!String.IsNullOrEmpty(name))
             {
@@ -67,30 +64,8 @@ namespace RS.Controllers
             return View(users.ToList());
         }
 
-        //[HttpGet]
-        //public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
-        //{
-        //    List<Users> editUser = db.Users.ToList();
-        //    if (!String.IsNullOrEmpty(name))
-        //    {
-        //        Users edited = new Users { email = email, first_name = name, last_name = last_name, phone_number = phone_number };
-        //    }
-        //    return View();
-        //}
-
         [HttpPost]
-        public ActionResult Edit(Users user, string name, string last_name, string phone_number, string email, ICollection<RS.Models.Roles> userRoles)
-        {
-            List<Users> editUser = db.Users.ToList();
-            if (!String.IsNullOrEmpty(name))
-            {
-                Users edited = new Users { email = email, first_name = name, last_name = last_name, phone_number = phone_number };
-            }
-            return View();
-        }
-
-        [HttpPost]
-        public void Save(Users user)
+        public void Save(Users user, List<Models.Roles> roles)
         {
             Console.WriteLine(user.last_name);
         }
@@ -103,34 +78,31 @@ namespace RS.Controllers
             {
                 try
                 {
-                    using (MainDB db = new MainDB())
+                    UsersRoles usersRoles = new UsersRoles();
+                    var count = SQL.Instance.Database.Users.Count(u => u.email == U.email);
+                    if (count == 0)
                     {
-                        UsersRoles usersRoles = new UsersRoles();
-                        var count = db.Users.Count(u => u.email == U.email);
-                        if (count == 0)
-                        {
-                            string hash = Helpers.SHA1.Encode(U.password);
-                            string hashConfirm = Helpers.SHA1.Encode(U.ConfirmPassword);
-                            U.ConfirmPassword = hashConfirm;
-                            U.password = hash;
+                        string hash = Helpers.SHA1.Encode(U.password);
+                        string hashConfirm = Helpers.SHA1.Encode(U.ConfirmPassword);
+                        U.ConfirmPassword = hashConfirm;
+                        U.password = hash;
 
-                            db.Users.Add(U);
-                            db.SaveChanges();
-                            usersRoles.roles_id = POUZIVATEL;
+                        SQL.Instance.Database.Users.Add(U);
+                        SQL.Instance.Database.SaveChanges();
+                        usersRoles.roles_id = POUZIVATEL;
 
-                            usersRoles.user_id = U.user_id;
-                            db.UsersRoles.Add(usersRoles);
-                            db.SaveChanges();
-                            ModelState.Clear();
-                            U = null;
-                            TempData["registration"] = "You are successfully registered.";
-                            return RedirectToAction("Index", "Home");
-                        }
-                        else
-                        {
-                            ViewBag.Message = "User with this email exists";
-                            return View();
-                        }
+                        usersRoles.user_id = U.user_id;
+                        SQL.Instance.Database.UsersRoles.Add(usersRoles);
+                        SQL.Instance.Database.SaveChanges();
+                        ModelState.Clear();
+
+                        TempData["registration"] = "You are successfully registered.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.Message = "User with this email exists";
+                        return View();
                     }
                 }
                 catch (DbEntityValidationException ex)
