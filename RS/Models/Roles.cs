@@ -25,20 +25,5 @@ namespace RS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRoles> UsersRoles { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            if(!(obj is Roles))
-            {
-                return false;
-            }
-
-            if(this == obj)
-            {
-                return true;
-            }
-            Roles other = (Roles)obj;
-            return name.Equals(other.name);
-        }
     }
 }

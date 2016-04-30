@@ -5,12 +5,38 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Permanents">
+          <Key>
+            <PropertyRef Name="permanent_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="permanent_id" Type="int" Nullable="false" />
+          <Property Name="counter" Type="int" />
+          <Property Name="free_entries" Type="int" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="roles_id" />
           </Key>
           <Property Name="roles_id" Type="int" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Trainings">
+          <Key>
+            <PropertyRef Name="training_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="training_id" Type="int" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="kapacita" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrainingUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="training_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -31,6 +57,54 @@
           <Property Name="roles_id" Type="int" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Permanent__user___3E1D39E1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Permanents" Type="Self.Permanents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Permanents">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Trainings__user___29221CFB">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Trainings" Type="Self.Trainings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Trainings">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainingU__train__41EDCAC5">
+          <End Role="Trainings" Type="Self.Trainings" Multiplicity="1" />
+          <End Role="TrainingUsers" Type="Self.TrainingUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainings">
+              <PropertyRef Name="training_id" />
+            </Principal>
+            <Dependent Role="TrainingUsers">
+              <PropertyRef Name="training_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainingU__user___40F9A68C">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TrainingUsers" Type="Self.TrainingUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="TrainingUsers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UsersRole__roles__6E01572D">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
@@ -56,9 +130,28 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Permanents" EntityType="Self.Permanents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainings" EntityType="Self.Trainings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainingUsers" EntityType="Self.TrainingUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Permanent__user___3E1D39E1" Association="Self.FK__Permanent__user___3E1D39E1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Permanents" EntitySet="Permanents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Trainings__user___29221CFB" Association="Self.FK__Trainings__user___29221CFB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Trainings" EntitySet="Trainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainingU__train__41EDCAC5" Association="Self.FK__TrainingU__train__41EDCAC5">
+            <End Role="Trainings" EntitySet="Trainings" />
+            <End Role="TrainingUsers" EntitySet="TrainingUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainingU__user___40F9A68C" Association="Self.FK__TrainingU__user___40F9A68C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TrainingUsers" EntitySet="TrainingUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK__UsersRole__roles__6E01572D" Association="Self.FK__UsersRole__roles__6E01572D">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="UsersRoles" EntitySet="UsersRoles" />
@@ -91,6 +184,9 @@
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UsersRoles" Relationship="Self.FK__UsersRole__user___656C112C" FromRole="Users" ToRole="UsersRoles" />
+          <NavigationProperty Name="Permanents" Relationship="Database1Model.FK__Permanent__user___3E1D39E1" FromRole="Users" ToRole="Permanents" />
+          <NavigationProperty Name="Trainings" Relationship="Database1Model.FK__Trainings__user___29221CFB" FromRole="Users" ToRole="Trainings" />
+          <NavigationProperty Name="TrainingUsers" Relationship="Database1Model.FK__TrainingU__user___40F9A68C" FromRole="Users" ToRole="TrainingUsers" />
         </EntityType>
         <EntityType Name="UsersRoles">
           <Key>
@@ -138,7 +234,105 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersRoles" EntitySet="UsersRoles" />
           </AssociationSet>
+          <EntitySet Name="Permanents" EntityType="Database1Model.Permanents" />
+          <EntitySet Name="Trainings" EntityType="Database1Model.Trainings" />
+          <EntitySet Name="TrainingUsers" EntityType="Database1Model.TrainingUsers" />
+          <AssociationSet Name="FK__Permanent__user___3E1D39E1" Association="Database1Model.FK__Permanent__user___3E1D39E1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Permanents" EntitySet="Permanents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Trainings__user___29221CFB" Association="Database1Model.FK__Trainings__user___29221CFB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Trainings" EntitySet="Trainings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainingU__train__41EDCAC5" Association="Database1Model.FK__TrainingU__train__41EDCAC5">
+            <End Role="Trainings" EntitySet="Trainings" />
+            <End Role="TrainingUsers" EntitySet="TrainingUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TrainingU__user___40F9A68C" Association="Database1Model.FK__TrainingU__user___40F9A68C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TrainingUsers" EntitySet="TrainingUsers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Permanents">
+          <Key>
+            <PropertyRef Name="permanent_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="permanent_id" Type="Int32" Nullable="false" />
+          <Property Name="counter" Type="Int32" />
+          <Property Name="free_entries" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Database1Model.FK__Permanent__user___3E1D39E1" FromRole="Permanents" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Trainings">
+          <Key>
+            <PropertyRef Name="training_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="training_id" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="kapacita" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Database1Model.FK__Trainings__user___29221CFB" FromRole="Trainings" ToRole="Users" />
+          <NavigationProperty Name="TrainingUsers" Relationship="Database1Model.FK__TrainingU__train__41EDCAC5" FromRole="Trainings" ToRole="TrainingUsers" />
+        </EntityType>
+        <EntityType Name="TrainingUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="training_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trainings" Relationship="Database1Model.FK__TrainingU__train__41EDCAC5" FromRole="TrainingUsers" ToRole="Trainings" />
+          <NavigationProperty Name="Users" Relationship="Database1Model.FK__TrainingU__user___40F9A68C" FromRole="TrainingUsers" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Permanent__user___3E1D39E1">
+          <End Type="Database1Model.Users" Role="Users" Multiplicity="1" />
+          <End Type="Database1Model.Permanents" Role="Permanents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Permanents">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Trainings__user___29221CFB">
+          <End Type="Database1Model.Users" Role="Users" Multiplicity="1" />
+          <End Type="Database1Model.Trainings" Role="Trainings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="Trainings">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainingU__train__41EDCAC5">
+          <End Type="Database1Model.Trainings" Role="Trainings" Multiplicity="1" />
+          <End Type="Database1Model.TrainingUsers" Role="TrainingUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trainings">
+              <PropertyRef Name="training_id" />
+            </Principal>
+            <Dependent Role="TrainingUsers">
+              <PropertyRef Name="training_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TrainingU__user___40F9A68C">
+          <End Type="Database1Model.Users" Role="Users" Multiplicity="1" />
+          <End Type="Database1Model.TrainingUsers" Role="TrainingUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="TrainingUsers">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -171,6 +365,35 @@
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="roles_id" ColumnName="roles_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permanents">
+            <EntityTypeMapping TypeName="Database1Model.Permanents">
+              <MappingFragment StoreEntitySet="Permanents">
+                <ScalarProperty Name="free_entries" ColumnName="free_entries" />
+                <ScalarProperty Name="counter" ColumnName="counter" />
+                <ScalarProperty Name="permanent_id" ColumnName="permanent_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainings">
+            <EntityTypeMapping TypeName="Database1Model.Trainings">
+              <MappingFragment StoreEntitySet="Trainings">
+                <ScalarProperty Name="kapacita" ColumnName="kapacita" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="training_id" ColumnName="training_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainingUsers">
+            <EntityTypeMapping TypeName="Database1Model.TrainingUsers">
+              <MappingFragment StoreEntitySet="TrainingUsers">
+                <ScalarProperty Name="training_id" ColumnName="training_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

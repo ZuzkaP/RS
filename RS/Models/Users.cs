@@ -19,12 +19,26 @@ namespace RS.Models
         public Users()
         {
             this.UsersRoles = new HashSet<UsersRoles>();
+            this.Permanents = new HashSet<Permanents>();
+            this.Trainings = new HashSet<Trainings>();
+            this.TrainingUsers = new HashSet<TrainingUsers>();
         }
-    
+
+
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<UsersRoles> UsersRoles { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Permanents> Permanents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trainings> Trainings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TrainingUsers> TrainingUsers { get; set; }
+
+
         public int user_id { get; set; }
-       [DisplayFormat(ConvertEmptyStringToNull = false)]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$",
-        ErrorMessage = "Please provide valid email id")]
+         ErrorMessage = "Please provide valid email id")]
         public string email { get; set; }
 
         [Required]
@@ -59,12 +73,10 @@ namespace RS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersRoles> UsersRoles { get; set; }
 
-        public ICollection<Roles> Roles { get; set; }
-
         private static ICollection<Roles> getRoles(ICollection<UsersRoles> from)
         {
             ICollection<Roles> c = new List<Roles>();
-            foreach(UsersRoles ur in from)
+            foreach (UsersRoles ur in from)
             {
                 c.Add(ur.Roles);
             }
@@ -74,9 +86,9 @@ namespace RS.Models
 
         private static bool ArraysAreSame(ICollection<Roles> c1, ICollection<Roles> c2)
         {
-            foreach(Roles userRole in c1)
+            foreach (Roles userRole in c1)
             {
-                if(!c2.Contains(userRole))
+                if (!c2.Contains(userRole))
                 {
                     return false;
                 }
@@ -87,20 +99,23 @@ namespace RS.Models
 
         public override bool Equals(object obj)
         {
-            if(!(obj is Users))
+            if (!(obj is Users))
             {
                 return false;
             }
 
-            if(obj == this)
+            if (obj == this)
             {
                 return true;
             }
 
             Users other = (Users)obj;
-            return email.Equals(other.email) && first_name.Equals(other.first_name) 
-                && last_name.Equals(other.last_name) && phone_number.Equals(other.phone_number) 
+            return email.Equals(other.email) && first_name.Equals(other.first_name)
+                && last_name.Equals(other.last_name) && phone_number.Equals(other.phone_number)
                 && ArraysAreSame(getRoles(UsersRoles), getRoles(other.UsersRoles));
         }
     }
 }
+
+
+       

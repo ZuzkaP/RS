@@ -161,13 +161,23 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Core\MainDB.cs" />
     <Compile Include="Core\SQL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Permanents.cs">
+      <DependentUpon>UsersModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Roles.cs">
+      <DependentUpon>UsersModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trainings.cs">
+      <DependentUpon>UsersModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TrainingUsers.cs">
       <DependentUpon>UsersModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
@@ -213,6 +223,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\User\Maintanance.cshtml" />
     <Content Include="Views\User\View1.cshtml" />
+    <Content Include="Views\Trainings\Calendar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

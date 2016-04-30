@@ -23,9 +23,15 @@ else
                 <span class="white-text">
                     <p style="font-size: 28px" class="center">Welcome anonymous user. In order to see all the features, please log in with an existing account or register.</p>
                 </span>
+                @if (@TempData["registration"] != null)
+                {
+                    <div class="alert alert-success"><b>Success!</b> @TempData["registration"]</div>
+                    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Login")'" />
+                }
             </div>
         </div>
     </div>
+
     
 }
 
@@ -73,10 +79,6 @@ else
     <div class="parallax"><img src="~/Content/IMAGES/header.jpg"></div>
 </div>
 
-@if (@TempData["registration"] != null)
-{
-    <div class="alert alert-success"><b>Success!</b> @TempData["registration"]</div>
-    <input type="button" value="Login" onclick="location.href='@Url.Action("Login", "Login")'" />
-}
+
 
 
