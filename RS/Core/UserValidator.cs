@@ -8,7 +8,7 @@ namespace RS.Models
     {
         public static bool IsValid(string email, string _password)
         {
-            foreach(Users user in SQL.Instance.Database.Users) 
+            foreach(Users user in SQLConnection.Instance.Database.Users) 
             {
                 if(user.email.Equals(email) && user.password.Equals(Helpers.SHA1.Encode(_password)))
                 {

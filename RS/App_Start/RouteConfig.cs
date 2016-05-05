@@ -1,4 +1,5 @@
 ﻿using RS.Models;
+using RS.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,13 +23,14 @@ namespace RS
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
+            Services.Instance.Notify(SQLConnection.Instance.Database);
             checkIfAdminExists();
         }
 
         private static void checkIfAdminExists()
         {
             bool found = false;
-            foreach (Users u in SQL.Instance.Database.Users)
+            foreach (Users u in SQLConnection.Instance.Database.Users)
             {
                 if (u.email.Equals("admin@admin.sk"))
                 {
@@ -46,8 +48,8 @@ namespace RS
                 admin.last_name = "admin";
                 admin.phone_number = "+421 900 000 000";
 
-                SQL.Instance.Database.Users.Add(admin);
-                SQL.Instance.Database.SaveChanges();
+                SQLConnection.Instance.Database.Users.Add(admin);
+                SQLConnection.Instance.Database.SaveChanges();
             }
         }
     }

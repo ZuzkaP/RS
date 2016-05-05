@@ -92,8 +92,8 @@ function deactivateAllCheckBoxes(td) {
     });
 }
 
-function saveChanges()
-{
+function saveChanges() {
+    changed = false;
     var tr = $('tr.active-row');
     var inputs = tr.find('input[type=text]');
     var roles = tr.find('input[type=checkbox]');
@@ -107,39 +107,47 @@ function saveChanges()
         name: 'admin',
         active: $(roles[0]).is(':checked')
     };
-    var uzivatel ={
+    var uzivatel = {
         name: 'uzivatel',
         active: $(roles[1]).is(':checked')
     };
     var trener = {
         name: 'trener',
-        active:  $(roles[2]).is(':checked')
+        active: $(roles[2]).is(':checked')
     };
-    var array = [admin,uzivatel,trener];
+    var array = [admin, uzivatel, trener];
+
+    var json = JSON.stringify({
+        'user': {
+            'first_name': name,
+            'last_name': last_name,
+            'phone_number': number,
+            'email': email
+        },
+        'roles': getRoles(array)
+    });
+    console.info(json);
 
     $.ajax({
         type: "POST",
         url: "/User/Save",
-        data: {
-            'first_name': name,
-            'last_name': last_name,
-            'number': number,
-            'email': email,
-            'Roles': getRoles(array)
-        },
-        dataType: 'json'
-    })
+        data: json,
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8'
+    }).success(function () {
+        window.location.reload();
+    }).fail(function () {
+        console.error("Internal server error!");
+    });
 }
 
-function getRoles(roles){
-
+function getRoles(roles) {
     var datas = [];
-    $.each(roles,function(index,item){
-        if(item.active)
-        {
-            datas.push({"name": item.name});
+    $.each(roles, function (index, item) {
+        if (item.active) {
+            datas.push({"name": item.name });
         }
-    
-    })
+    });
 
+    return datas;
 }

@@ -108,6 +108,7 @@
     <Content Include="Content\Common.js" />
     <Content Include="Content\IMAGES\header.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Context\context.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\UsersModel.Context.tt">
@@ -163,8 +164,12 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Core\BeanAttribute.cs" />
     <Compile Include="Core\MainDB.cs" />
-    <Compile Include="Core\SQL.cs" />
+    <Compile Include="Core\DatabaseObserver.cs" />
+    <Compile Include="Core\SQLConnection.cs" />
+    <Compile Include="DAO\TrainingDao.cs" />
+    <Compile Include="DAO\UsersDao.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +208,9 @@
     </Compile>
     <Compile Include="Core\UserValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ApplicationContext.cs" />
+    <Compile Include="Service\BeanResolver.cs" />
+    <Compile Include="Service\Services.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
