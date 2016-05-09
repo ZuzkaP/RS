@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<beans>
+  <bean id="usersDao" class="RS.DAO.UsersDao"/>
+  <bean id="trainingDao" class="RS.DAO.TrainingDao"/>
+</beans>
