@@ -44,11 +44,21 @@ namespace RS
                 Users admin = new Users();
                 admin.email = "admin@admin.sk";
                 admin.password = Helpers.SHA1.Encode("admin1234");
+                admin.ConfirmPassword = admin.password;
                 admin.first_name = "admin";
                 admin.last_name = "admin";
                 admin.phone_number = "+421 900 000 000";
 
                 SQLConnection.Instance.Database.Users.Add(admin);
+                SQLConnection.Instance.Database.SaveChanges();
+
+                UsersRoles usersRoles = new UsersRoles
+                {
+                    user_id = admin.user_id,
+                    roles_id = 1
+                };
+
+                SQLConnection.Instance.Database.UsersRoles.Add(usersRoles);
                 SQLConnection.Instance.Database.SaveChanges();
             }
         }

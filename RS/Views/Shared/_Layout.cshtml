@@ -8,12 +8,17 @@
     <link href="~/Scripts/jquery-ui.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Scripts/jquery-ui.structure.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Scripts/jquery-ui.theme.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/jquery.datetimepicker.css"/>
     <link type="text/css" rel="stylesheet" href="~/Scripts/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/fullcalendar.min.css"/>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
     <script src="~/Scripts/materialize.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/fullcalendar.min.js"></script>
     <script src="~/Content/Common.js"></script>
 </head>
 <body>
@@ -22,37 +27,40 @@
             <a href="@Url.Action("Index", "Home")" class="brand-logo">Studio Speranza</a>
 
             <ul class="right hide-on-med-and-down">
-                <li><a href="@Url.Action("Index", "Home")"><i class="material-icons left">dashboard</i>Home</a></li>
+                <li><a href="@Url.Action("Index", "Home")"><i class="material-icons left">dashboard</i>Domov</a></li>
+                <li><a href="@Url.Action("Calendar", "Trainings")"><i class="material-icons left">schedule</i>Kalendar</a></li>  
                 @if (!Request.IsAuthenticated)
                 {
-                    <li><a href="@Url.Action("Calendar", "Trainings")"><i class="material-icons left">schedule</i>Kalendar</a></li>  
-                    <li><a href="@Url.Action("Register", "User")"><i class="material-icons left">supervisor_account</i>Sign Up</a></li>
-                    <li><a href="@Url.Action("Login", "Login")"><i class="material-icons left">perm_identity</i>Login</a></li>
+                    <li><a href="@Url.Action("Register", "User")"><i class="material-icons left">supervisor_account</i>Registrácia</a></li>
+                    <li><a href="@Url.Action("Login", "Login")"><i class="material-icons left">perm_identity</i>Prihlásenie</a></li>
                     }
                 else
                 {
                     if (User.Identity.Name == "admin@admin.sk")
                     {
-                        <li><a href="@Url.Action("Maintanance", "User")"><i class="material-icons left">menu</i>Settings</a></li>
+                        <li><a href="@Url.Action("Maintanance", "User")"><i class="material-icons left">menu</i>Nastavenia</a></li>
                     }
-                    <li><a href="@Url.Action("Logout", "Login")"><i class="material-icons left">input</i><strong>(@Html.Encode(User.Identity.Name))</strong> Logout</a></li>
+                    <li><a href="@Url.Action("Index", "Trainings")"><i class="material-icons left">settings</i>Tréningy</a></li>
+                    <li><a href="@Url.Action("Logout", "Login")"><i class="material-icons left">input</i><strong>(@Html.Encode(User.Identity.Name))</strong>Odhlásenie</a></li>
                 }
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
-                <li><a href="#"><i class="material-icons left">dashboard</i>Home</a></li>
+                <li><a href="#"><i class="material-icons left">dashboard</i>Domov</a></li>
+                <li><a href="@Url.Action("Calendar", "Trainings")"><i class="material-icons left">schedule</i>Kalendar</a></li>  
                 @if (!Request.IsAuthenticated)
                 {
-                    <li><a href="@Url.Action("Register", "User")"><i class="material-icons left">supervisor_account</i>Sign Up</a></li>
-                    <li><a href="@Url.Action("Login", "Login")"><i class="material-icons left">perm_identity</i>Login</a></li>
+                    <li><a href="@Url.Action("Register", "User")"><i class="material-icons left">supervisor_account</i>Registrácia</a></li>
+                    <li><a href="@Url.Action("Login", "Login")"><i class="material-icons left">perm_identity</i>Prihlásenie</a></li>
                 }
                 else
                 {
                     if (User.Identity.Name == "admin@admin.sk")
                     {
-                        <li><a href="@Url.Action("Maintanance", "User")"><i class="material-icons left">menu</i>Settings</a></li>
+                        <li><a href="@Url.Action("Maintanance", "User")"><i class="material-icons left">menu</i>Nastavenia</a></li>
                     }
-                    <li><a href="@Url.Action("Logout", "Login")"><i class="material-icons left">input</i><strong>(@Html.Encode(User.Identity.Name))</strong> Logout</a></li>
+                    <li><a href="@Url.Action("Index", "Trainings")"><i class="material-icons left">settings</i>Tréningy</a></li>
+                    <li><a href="@Url.Action("Logout", "Login")"><i class="material-icons left">input</i><strong>(@Html.Encode(User.Identity.Name))</strong>Odhlásenie</a></li>
                 }
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

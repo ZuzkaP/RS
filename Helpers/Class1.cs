@@ -16,4 +16,5 @@ namespace Helpers
             return BitConverter.ToString(hash.ComputeHash(combined)).ToLower().Replace("-", "");
         }
     }
+    
 }

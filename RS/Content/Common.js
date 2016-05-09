@@ -43,6 +43,41 @@ $(function () {
         $('.save-button').button();
         $('.cancel-button').button();
 
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'month,agendaWeek,agendaDay',
+                center: 'title',
+                right: 'today prev,next'
+            },
+            editable: false,
+            eventLimit: true,
+            events: function (start, end, timezone, callback) {
+                $.getJSON('/Trainings/All', function (response) {
+                    var events = [];
+
+                    $.each(response, function (index, item) {
+                        var event = {
+                            title: item.first_name + ', ' + getTime(item.time).toISOString().substring(0, 10),
+                            start: getTime(item.time),
+                            end: getTime(item.time),
+                            editable: false
+                        };
+
+                        events.push(event);
+                    });
+
+                    callback(events);
+                }).error(function (response) {
+                    console.info(response.responseText);
+                });
+            }
+        });
+
+        $('#time').datetimepicker({
+            startDate: new Date()
+        });
+
+        $('.modal-trigger').leanModal();
     });
 });
 
@@ -66,6 +101,13 @@ function disableInputs() {
     deactivateAllCheckBoxes();
     //najdem class active row a zmazem
     $('tr.active-row').removeClass('active-row');
+}
+
+function getTime(time) {
+    var re = /-?\d+/;
+    var m = re.exec(time);
+    var d = new Date(parseInt(m[0]));
+    return d;
 }
 
 function convertToInput(td) {

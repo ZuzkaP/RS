@@ -69,6 +69,11 @@ namespace RS.DAO
             return database.Roles.Where(r => r.name.Equals(role)).ToList().ElementAt(0).roles_id;
         }
 
+        public ICollection<UsersRoles> GetRoleForUser(string email)
+        {
+            return database.Users.Where(u => u.email.Equals(email)).ToList().ElementAt(0).UsersRoles;
+        }
+
         public bool ExistsUser(string email)
         {
             return database.Users.Count(u => u.email == email) != 0;
@@ -129,6 +134,7 @@ namespace RS.DAO
                     SaveUsersRole(u.user_id, GetRoleIdByName(role.name));
                 }
             }
+            database.SaveChanges();
         }
 
         private bool ContainsRole(UsersRoles usersRoles, List<Roles> roles)

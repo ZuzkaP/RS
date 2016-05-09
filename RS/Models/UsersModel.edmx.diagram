@@ -11,7 +11,7 @@
         <AssociationConnector Association="Database1Model.FK__UsersRole__roles__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="Database1Model.FK__UsersRole__user___656C112C" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Database1Model.Permanents" Width="1.5" PointX="5.125" PointY="7.375" />
-        <EntityTypeShape EntityType="Database1Model.Trainings" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Database1Model.Trainings" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.TrainingUsers" Width="1.5" PointX="8.625" PointY="3.375" />
         <AssociationConnector Association="Database1Model.FK__Permanent__user___3E1D39E1" />
         <AssociationConnector Association="Database1Model.FK__Trainings__user___29221CFB" />

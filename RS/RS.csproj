@@ -116,6 +116,7 @@
       <DependentUpon>UsersModel.edmx</DependentUpon>
       <LastGenOutput>UsersModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\UsersModel.edmx.sql" />
     <Content Include="Models\UsersModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UsersModel.edmx</DependentUpon>
@@ -139,6 +140,8 @@
       <DependentUpon>UsersModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\fullcalendar.min.css" />
+    <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -146,6 +149,8 @@
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery-ui.structure.min.css" />
     <Content Include="Scripts\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\jquery.datetimepicker.css" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -155,6 +160,7 @@
     <Content Include="Scripts\materialize.min.css" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
@@ -232,6 +238,8 @@
     <Content Include="Views\User\Maintanance.cshtml" />
     <Content Include="Views\User\View1.cshtml" />
     <Content Include="Views\Trainings\Calendar.cshtml" />
+    <Content Include="Scripts\moment.min" />
+    <Content Include="Views\Trainings\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

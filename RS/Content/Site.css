@@ -60,3 +60,10 @@ nav .brand-logo {
     left: 50% !important;
     transform: translate(-50%, 0) !important;
 }
+
+#calendar {
+    width: 90%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

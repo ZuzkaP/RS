@@ -19,7 +19,7 @@ namespace RS.Core
         public MainDB() 
             : base("MainDB")
         {
-
+            
         }
     }
 }

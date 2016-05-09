@@ -26,7 +26,7 @@
             <PropertyRef Name="training_id" />
           </Key>
           <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="training_id" Type="int" Nullable="false" />
+          <Property Name="training_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="time" Type="datetime" Nullable="false" />
           <Property Name="kapacita" Type="int" Nullable="false" />
         </EntityType>
@@ -34,7 +34,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="training_id" Type="int" Nullable="false" />
         </EntityType>
@@ -69,7 +69,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Trainings__user___29221CFB">
+        <Association Name="FK__Trainings__user___4F47C5E3">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Trainings" Type="Self.Trainings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -81,7 +81,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrainingU__train__41EDCAC5">
+        <Association Name="FK__TrainingU__train__540C7B00">
           <End Role="Trainings" Type="Self.Trainings" Multiplicity="1" />
           <End Role="TrainingUsers" Type="Self.TrainingUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -93,7 +93,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TrainingU__user___40F9A68C">
+        <Association Name="FK__TrainingU__user___531856C7">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="TrainingUsers" Type="Self.TrainingUsers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -140,15 +140,15 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Permanents" EntitySet="Permanents" />
           </AssociationSet>
-          <AssociationSet Name="FK__Trainings__user___29221CFB" Association="Self.FK__Trainings__user___29221CFB">
+          <AssociationSet Name="FK__Trainings__user___4F47C5E3" Association="Self.FK__Trainings__user___4F47C5E3">
             <End Role="Users" EntitySet="Users" />
             <End Role="Trainings" EntitySet="Trainings" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrainingU__train__41EDCAC5" Association="Self.FK__TrainingU__train__41EDCAC5">
+          <AssociationSet Name="FK__TrainingU__train__540C7B00" Association="Self.FK__TrainingU__train__540C7B00">
             <End Role="Trainings" EntitySet="Trainings" />
             <End Role="TrainingUsers" EntitySet="TrainingUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__TrainingU__user___40F9A68C" Association="Self.FK__TrainingU__user___40F9A68C">
+          <AssociationSet Name="FK__TrainingU__user___531856C7" Association="Self.FK__TrainingU__user___531856C7">
             <End Role="Users" EntitySet="Users" />
             <End Role="TrainingUsers" EntitySet="TrainingUsers" />
           </AssociationSet>
@@ -337,69 +337,68 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities4">
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="Database1Model.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="roles_id" ColumnName="roles_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Database1Model.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UsersRoles">
-            <EntityTypeMapping TypeName="Database1Model.UsersRoles">
-              <MappingFragment StoreEntitySet="UsersRoles">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="roles_id" ColumnName="roles_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Permanents">
-            <EntityTypeMapping TypeName="Database1Model.Permanents">
-              <MappingFragment StoreEntitySet="Permanents">
-                <ScalarProperty Name="free_entries" ColumnName="free_entries" />
-                <ScalarProperty Name="counter" ColumnName="counter" />
-                <ScalarProperty Name="permanent_id" ColumnName="permanent_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Trainings">
-            <EntityTypeMapping TypeName="Database1Model.Trainings">
-              <MappingFragment StoreEntitySet="Trainings">
-                <ScalarProperty Name="kapacita" ColumnName="kapacita" />
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="training_id" ColumnName="training_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TrainingUsers">
-            <EntityTypeMapping TypeName="Database1Model.TrainingUsers">
-              <MappingFragment StoreEntitySet="TrainingUsers">
-                <ScalarProperty Name="training_id" ColumnName="training_id" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities4">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(Database1Model.Roles)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="roles_id" ColumnName="roles_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Database1Model.Users)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Database1Model.UsersRoles)">
+        <MappingFragment StoreEntitySet="UsersRoles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="roles_id" ColumnName="roles_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permanents">
+      <EntityTypeMapping TypeName="IsTypeOf(Database1Model.Permanents)">
+        <MappingFragment StoreEntitySet="Permanents">
+          <ScalarProperty Name="permanent_id" ColumnName="permanent_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="counter" ColumnName="counter" />
+          <ScalarProperty Name="free_entries" ColumnName="free_entries" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trainings">
+      <EntityTypeMapping TypeName="IsTypeOf(Database1Model.Trainings)">
+        <MappingFragment StoreEntitySet="Trainings">
+          <ScalarProperty Name="training_id" ColumnName="training_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="kapacita" ColumnName="kapacita" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Database1Model.TrainingUsers)">
+        <MappingFragment StoreEntitySet="TrainingUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="training_id" ColumnName="training_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -413,7 +412,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
