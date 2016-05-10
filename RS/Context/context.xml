@@ -4,3 +4,4 @@
   <bean id="usersDao" class="RS.DAO.UsersDao"/>
   <bean id="trainingDao" class="RS.DAO.TrainingDao"/>
 </beans>
+<!--ahoj-->
