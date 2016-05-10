@@ -22,7 +22,7 @@ namespace RS.Service
         private Services()
         {
             applicationContext = new ApplicationContext(
-                string.Format(@"C:\\Users\Zuzka\\Documents\\Visual Studio 2015\\Projects\\RS\RS\\Context\\context.xml", Environment.UserName)
+                string.Format(@"C:\\Users\Zuzka\\Documents\\Visual Studio 2015\\Projects\\RS\RS\\Context\\context.xml")
             );
 
             foreach(object obj in applicationContext.GetAllBeans())
