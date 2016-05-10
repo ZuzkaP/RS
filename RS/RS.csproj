@@ -108,7 +108,7 @@
     <Content Include="Content\Common.js" />
     <Content Include="Content\IMAGES\header.jpg" />
     <Content Include="Content\Site.css" />
-    <Content Include="Context\context.xml" />
+    <Content Include="App_Data\context.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\UsersModel.Context.tt">

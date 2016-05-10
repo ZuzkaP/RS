@@ -21,9 +21,7 @@ namespace RS.Service
 
         private Services()
         {
-            applicationContext = new ApplicationContext(
-                string.Format(@"C:\Users\{0}\Documents\Visual Studio 2015\Projects\RS\RS\Context\context.xml", Environment.UserName)
-            );
+            applicationContext = new ApplicationContext(GetContextFile());
 
             foreach(object obj in applicationContext.GetAllBeans())
             {
@@ -32,6 +30,11 @@ namespace RS.Service
                     Attach(obj as DatabaseObserver);
                 }
             }
+        }
+
+        private string GetContextFile()
+        {
+            return System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/context.xml");
         }
 
         private void Attach(DatabaseObserver observer)
