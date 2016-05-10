@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace RS.Controllers
 {
+    [Authorize]
     public class LoginController : Controller
     {
         // GET: Login

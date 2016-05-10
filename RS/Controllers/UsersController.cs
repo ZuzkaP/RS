@@ -14,6 +14,7 @@ using System.Web.Security;
 
 namespace RS.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         public object RegisterSuccessfull { get; private set; }

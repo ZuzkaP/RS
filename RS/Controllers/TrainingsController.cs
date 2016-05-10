@@ -15,6 +15,7 @@ using System.Xml;
 
 namespace RS.Controllers
 {
+    [Authorize]
     public class TrainingsController : Controller
     {
         public TrainingsController()
